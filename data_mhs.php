@@ -85,69 +85,32 @@ $mahasiswa = (query($query));
                                         <div class="mb-3 row mt-4">
                                             <label for="doswal" class="col-sm-3 col-form-label">NIM </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="doswal" value="<?= $mhs["NIM"] ?>">
+                                                <input type="text" class="form-control" id="doswal" value="<?= $mhs["NIM"] ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="nip" class="col-sm-3  col-form-label">Nama </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="nip" value="<?= $mhs["nama"] ?>">
+                                                <input type="text" class="form-control" id="nip" value="<?= $mhs["nama"] ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="semester" class="col-sm-3 col-form-label">Angkatan </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="semester" value="<?= $mhs["angkatan"] ?>">
+                                                <input type="text" class="form-control" id="semester" value="<?= $mhs["angkatan"] ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="status" class="col-sm-3 col-form-label">Doswal </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="status" value="<?= $mhs["nama_doswal"] ?>">
+                                                <input type="text" class="form-control" id="status" value="<?= $mhs["nama_doswal"] ?>" disabled>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <br>
-                            <div class="table-responsive-lg ms-4 justify-content-center">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">1</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">2</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">3</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">4</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">5</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">6</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">7</button></th>
-                                    </tr>
-                                    <tr>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">8</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">9</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">10</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">11</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">12</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">13</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">14</button></th>
-                                    </tr>
-
-                                </table>
-                            </div>
-                            <div class="ms-4">
-                                <h5>Keterangan</h5>
-                            </div>
-                            <div class="row ms-4">
-                                <div class="col-1" style="width:2rem; height:2rem;background-color:#0E3B81;"></div>
-                                <div class="col-5">: Sudah diisikan IRS dan KHS</div>
-                                <div class="col-1" style="width:2rem; height:2rem;background-color:#C98400;"></div>
-                                <div class="col-5">: Sudah lulus PKL</div>
-                            </div>
-                            <div class="row ms-4 mt-2">
-                                <div class="col-1" style="width:2rem; height:2rem;background-color:#972126;"></div>
-                                <div class="col-5">: Belum diisikan IRS dan KHS</div>
-                                <div class="col-1" style="width:2rem; height:2rem;background-color:#2F6146;"></div>
-                                <div class="col-5">: Sudah lulus Skripsi</div>
-                            </div>
+                            
 
 
 
