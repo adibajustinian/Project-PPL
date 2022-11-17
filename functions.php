@@ -12,7 +12,7 @@
     }
 
     function cari($keyword){
-        $query = "SELECT NIM,nama,status_irs,status_khs,status_pkl,status_skripsi,persetujuan,nama_doswal
+        $query = "SELECT mahasiswa.id_mhs,NIM,nama,status_irs,status_khs,status_pkl,status_skripsi,persetujuan,nama_doswal
         FROM irs INNER JOIN mahasiswa
         ON irs.id_mhs = mahasiswa.id_mhs INNER JOIN khs
         ON khs.id_mhs = mahasiswa.id_mhs INNER JOIN pkl
