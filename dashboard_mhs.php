@@ -111,25 +111,25 @@ $mahasiswa = (query($query));
                                 <div class="mb-3 row mt-4">
                                     <label for="doswal" class="col-sm-3 col-form-label">Dosen Wali </label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="doswal" name="doswal" value="<?= $mhs["nama_doswal"] ?>">
+                                        <input type="text" class="form-control" id="doswal" name="doswal" value="<?= $mhs["nama_doswal"] ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="nip" class="col-sm-3 col-form-label">NIP Dosen Wali </label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="nip" name="nip" value="<?= $mhs["NIP"] ?>">
+                                        <input type="text" class="form-control" id="nip" name="nip" value="<?= $mhs["NIP"] ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="semester" class="col-sm-3 col-form-label">Studi Semester </label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="semester" name="semester" value="<?= $mhs["smst_aktif"] ?>">
+                                        <input type="text" class="form-control" id="semester" name="semester" value="<?= $mhs["smst_aktif"] ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="status" class="col-sm-3 col-form-label">Status Akademik </label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="status" name="status" value="<?= $mhs["status"] ?>">
+                                        <input type="text" class="form-control" id="status" name="status" value="<?= $mhs["status"] ?>" disabled>
                                     </div>
                                 </div>
                             </form>
