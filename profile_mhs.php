@@ -1,101 +1,31 @@
 <?php
 session_start();
-require ('db_login.php');
-$valid = TRUE;
+require 'function_entry.php';
+$id_email = $_SESSION["email"];
+$mhs = query("SELECT * FROM irs INNER JOIN mahasiswa
+    ON irs.id_mhs = mahasiswa.id_mhs INNER JOIN khs
+    ON khs.id_mhs = mahasiswa.id_mhs INNER JOIN pkl
+    ON pkl.id_mhs = mahasiswa.id_mhs INNER JOIN skripsi
+    ON skripsi.id_mhs = mahasiswa.id_mhs WHERE email = '$id_email'")[0];
+var_dump($mhs);
+if (isset($_POST["submit"])) {
 
-if (isset($_POST["submit"])){
-    $NIM = test_input($_POST['NIM']);
-	if ($NIM == ''){
-		$error_address = "NIM is required";
-		$valid = FALSE;
-	}
-
-	$Nama_Lengkap = test_input($_POST['Nama_Lengkap']);
-	if ($Nama_Lengkap == ''){
-		$error_Nama_Lengkap = "Name is required";
-		$valid = FALSE;
-	}else{
-		if (!preg_match("/^[a-zA-Z ]*$/",$Nama_Lengkap)) {
-		   $error_Nama_Lengkap = "Only letters and white space allowed";
-		   $valid = FALSE;
-		}
-	}
-	
-	$Alamat = test_input($_POST['Alamat']);
-	if ($Alamat == ''){
-		$error_Alamat = "Alamat is required";
-		$valid = FALSE;
-	}
-	
-    $Provinsi = test_input($_POST['Provinsi']);
-	if ($Provinsi == ''){
-		$error_Provinsi = "Provinsi is required";
-		$valid = FALSE;
-	}
-
-    $Kota_Kab = test_input($_POST['Kota_Kab']);
-    if ($Kota_Kab == ''){
-		$error_Kota_Kab = "Kota_Kab is required";
-		$valid = FALSE;
-	}
-
-    $Angkatan = test_input($_POST['Angkatan']);
-    if ($Angkatan == ''){
-		$error_Angkatan = "Angkatan is required";
-		$valid = FALSE;
-	}
-
-    $Status = test_input($_POST['Status']);
-    if ($Status == ''){
-		$error_Status = "Status is required";
-		$valid = FALSE;
-	}
-
-    $Email = test_input($_POST['Email']);
-    if ($Email == ''){
-		$error_Email = "Email is required";
-		$valid = FALSE;
-	}
-
-    $No_Handphone = test_input($_POST['No_Handphone']);
-    if ($No_Handphone == ''){
-		$error_No_Handphone = "No_Handphone is required";
-		$valid = FALSE;
-	}
-
-    $Jalur_Masuk = test_input($_POST['Jalur_Masuk']);
-    if ($Jalur_Masuk == ''){
-		$error_Jalur_Masuk = "Jalur_Masuk is required";
-		$valid = FALSE;
-	}
-	
-	//insert data into database
-	if ($valid){
-		//escape inputs data
-		$NIM = $db->real_escape_string($NIM);
-		$Nama_Lengkap = $db->real_escape_string($Nama_Lengkap);
-		$Alamat = $db->real_escape_string($Alamat);
-        $Provinsi = $db->real_escape_string($Provinsi);
-        $Kota_Kab = $db->real_escape_string($Kota_Kab);
-        $Angkatan = $db->real_escape_string($Angkatan);
-        $Status = $db->real_escape_string($Status);
-        $Email = $db->real_escape_string($Email);
-        $Ho_Handphone = $db->real_escape_string($Ho_Handphone);
-        $Jalur_Masuk = $db->real_escape_string($Jalur_Masuk);
-
-		//Asign a query
-		$query = " INSERT INTO mahasiswa (NIM, Nama_Lengkap, Alamat, Provinsi, Kode_Kota_Kab, Angkatan, Status, Email, No_Handphone, Jalur_Masuk) VALUES('".$NIM."','".$Nama_Lengkap."','".$Alamat."','".$Provinsi."','".$Kota_Kab."','".$Angkatan."','".$Status."','".$Email."','".$No_Handphone."','".$Jalur_Masuk."') ";
-		// Execute the query
-		$result = $db->query( $query );
-		if (!$result){
-		   die ("Could not query the database: <br />". $db->error. 'query = '.$query);
-		}else{
-			header('Location: dashboard_mhs.php');
-		}
-		//close db connection
-		$db->close();
-		
-	}
+    //ubah data
+    if (getUpdateProfile($_POST) > 0) {
+        echo
+        "<script>
+                alert('Data berhasil ubah');
+                document.location.href = 'dashboard_mhs.php';
+            </script>
+            ";
+    } else {
+        "<script>
+                alert('Data gagal diubah');
+                document.location.href = 'dashboard_mhs.php';
+            </script>
+            ";
+        echo mysqli_error($db);
+    }
 }
 ?>
 <html lang="en">
@@ -118,8 +48,8 @@ if (isset($_POST["submit"])){
             <nav class=" navbar navbar-expand-lg navbar-light text-light" style="background-color:#101E31">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>    
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
     </a>
     <ul class="dropdown-menu text-light" aria-labelledby="navbarDropdown">
         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
@@ -135,7 +65,7 @@ if (isset($_POST["submit"])){
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg>
-        <h5 >Mahasiswa</h5>
+        <h5>Mahasiswa</h5>
     </div>
     </nav>
 
@@ -156,23 +86,24 @@ if (isset($_POST["submit"])){
                 </div>
                 <div class="col-sm">
                     <form method="POST" autocomplete="on" action="">
+                        <input type="hidden" name="id_mhs" value="<?= $mhs["id_mhs"]; ?>">
                         <div class="mb-3 row mt-4">
                             <label for="NIM" class="col-sm-4 col-form-label">NIM :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="NIM">
+                                <input type="text" name="NIM" class="form-control" id="NIM" value="<?= $mhs["NIM"]; ?>">
                             </div>
-                            
+
                         </div>
                         <div class="mb-3 row">
-                            <label for="NIM" class="col-sm-4 col-form-label">Nama Lengkap :</label>
+                            <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap :</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="NIM">
+                                <input type="text"name="nama" class="form-control" id="nama" value="<?= $mhs["nama"]; ?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="alamat" class="col-sm-4 col-form-label">Alamat :</label>
                             <div class="col-sm-8 ">
-                                <textarea class="form-control" rows="6" cols="6" name="alamat" id="alamat" ></textarea>
+                                <textarea class="form-control" rows="6" cols="6" name="alamat" id="alamat"><?= $mhs["alamat"]; ?></textarea>
                             </div>
                         </div>
 
@@ -203,13 +134,13 @@ if (isset($_POST["submit"])){
                                 </select>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div class="col-sm">
                     <div class="mb-3 row mt-4">
-                        <label for="Angkatan" class="col-sm-4 col-form-label">Angkatan :</label>
+                        <label for="angkatan" class="col-sm-4 col-form-label">Angkatan :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Angkatan">
+                            <input type="text" name="angkatan"class="form-control" id="angkatan" value="<?= $mhs["angkatan"]; ?>">
                         </div>
                     </div>
 
@@ -222,17 +153,12 @@ if (isset($_POST["submit"])){
                         </div>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="Email" class="col-sm-4 col-form-label">Email :</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Email">
-                        </div>
-                    </div>
+
 
                     <div class="mb-3 row">
-                        <label for="No Handphone" class="col-sm-4 col-form-label">No Handphone :</label>
+                        <label for="no_HP" class="col-sm-4 col-form-label">No Handphone :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="No Handphone">
+                            <input type="text" name="no_HP"class="form-control" id="no_HP" value="<?= $mhs["no_HP"]; ?>">
                         </div>
                     </div>
 
@@ -246,11 +172,11 @@ if (isset($_POST["submit"])){
                     </div>
                     <br><br><br><br><br>
                     <div class="text-center">
-                    <button type="submit" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center" name="login" value="login">Perbarui</button>
-                    
-                    <a href="dashboard_mhs.php" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center">Next</a>
+                        <button type="submit" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center" name="submit">Perbarui</button>
+                    </form>
+                        <a href="dashboard_mhs.php" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center">Next</a>
                     </div>
-                    
+
 
                 </div>
 

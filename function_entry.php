@@ -76,29 +76,7 @@ function ubah_pkl($data){
         mysqli_query($db,$query);
         return mysqli_affected_rows($db);
 }
-function ubah_skripsi($data){
-    global $db;
 
-    //$email = $_SESSION["email"];
-    $status_skripsi = $data["status_skripsi"];
-    $nilai_skripsi = $data["nilai_skripsi"];
-    $lama_studi = $data["lama_studi"];
-    $tanggal_sidang = $data["tanggal_sidang"];
-    $id_skripsi =$data["id_skripsi"];
-
-    $file = upload_skripsi();
-    global $query;
-    $query = "UPDATE skripsi SET 
-        status_skripsi = '$status_skripsi',
-        nilai_skripsi = '$nilai_skripsi',
-        lama_studi = '$lama_studi',
-        tanggal_sidang = '$tanggal_sidang',
-        berkas_skripsi = '$file'
-        WHERE id_skripsi = $id_skripsi
-    ";
-    mysqli_query($db,$query);
-    return mysqli_affected_rows($db);
-}
 
 function upload_irs(){
     $namaFile = $_FILES["berkas"]["name"];
@@ -150,6 +128,61 @@ function upload_skripsi(){
     move_uploaded_file($tmp_name,'file_upload/skripsi/' . $namaFile);
 
     return $namaFile;
+}
+function ubah_skripsi($data){
+    global $db;
+
+    //$email = $_SESSION["email"];
+    $status_skripsi = $data["status_skripsi"];
+    $nilai_skripsi = $data["nilai_skripsi"];
+    $lama_studi = $data["lama_studi"];
+    $tanggal_sidang = $data["tanggal_sidang"];
+    $id_skripsi =$data["id_skripsi"];
+
+    $file = upload_skripsi();
+    global $query;
+    $query = "UPDATE skripsi SET 
+        status_skripsi = '$status_skripsi',
+        nilai_skripsi = '$nilai_skripsi',
+        lama_studi = '$lama_studi',
+        tanggal_sidang = '$tanggal_sidang',
+        berkas_skripsi = '$file'
+        WHERE id_skripsi = $id_skripsi
+    ";
+    mysqli_query($db,$query);
+    return mysqli_affected_rows($db);
+}
+function getUpdateProfile($data){
+    global $db;
+
+    //$email = $_SESSION["email"];
+    $NIM = $data["NIM"];
+    $nama = $data["nama"];
+    $alamat =$data["alamat"];
+
+    $angkatan =$data["angkatan"];
+
+
+    $id_mhs =$data["id_mhs"];
+    $no_HP =$data["no_HP"];
+
+    
+
+    global $query;
+    $query = "UPDATE mahasiswa SET 
+        NIM = '$NIM',
+        nama = '$nama',
+        alamat = '$alamat',
+    
+        angkatan = '$angkatan',
+
+  
+        no_HP = '$no_HP'
+   
+        WHERE id_mhs = $id_mhs 
+    ";
+    mysqli_query($db,$query);
+    return mysqli_affected_rows($db);
 }
 
 ?>
