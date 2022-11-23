@@ -70,7 +70,7 @@
                 <div class="col-sm">
                     <br>
                 <ul class="nav nav-pills justify-content-center text-dark">
-                    <li class="nav-item"><a href="entry_irs.php" class="nav-link active" aria-current="page" style="background-color:grey"><b>Data Mahasiswa Aktif</b></a></li>
+                    <li class="nav-item"><a href="  " class="nav-link active" aria-current="page" style="background-color:grey"><b>Data Mahasiswa Aktif</b></a></li>
                     <li class="nav-item"><a href="list_tidak_aktif.php" class="nav-link text-dark"><b>Data Mahasiswa Tidak Aktif</b></a></li>
                 </ul>
                     <form method="POST" autocomplete="on" action="">
