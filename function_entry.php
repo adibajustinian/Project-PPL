@@ -159,7 +159,10 @@ function getUpdateProfile($data){
     $NIM = $data["NIM"];
     $nama = $data["nama"];
     $alamat =$data["alamat"];
-
+    $provinsi = $data["provinsi"];
+    $kabupaten = $data["kabupaten"];
+    $status = $data["status"];
+    $jalur_masuk = $data["jalur_masuk"];
     $angkatan =$data["angkatan"];
 
 
@@ -169,16 +172,16 @@ function getUpdateProfile($data){
     
 
     global $query;
-    $query = "UPDATE mahasiswa SET 
+    $query = "UPDATE mahasiswa,provinsi,kota_kab SET 
         NIM = '$NIM',
         nama = '$nama',
         alamat = '$alamat',
-    
+        nama_prov = '$provinsi',
+        nama_kota_kab = '$kabupaten',
+        status = '$status',
+        jalur_masuk = '$jalur_masuk',
         angkatan = '$angkatan',
-
-  
         no_HP = '$no_HP'
-   
         WHERE id_mhs = $id_mhs 
     ";
     mysqli_query($db,$query);
