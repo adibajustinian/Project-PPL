@@ -6,8 +6,10 @@ $mhs = query("SELECT * FROM irs INNER JOIN mahasiswa
     ON irs.id_mhs = mahasiswa.id_mhs INNER JOIN khs
     ON khs.id_mhs = mahasiswa.id_mhs INNER JOIN pkl
     ON pkl.id_mhs = mahasiswa.id_mhs INNER JOIN skripsi
-    ON skripsi.id_mhs = mahasiswa.id_mhs WHERE email = '$id_email'")[0];
-var_dump($mhs);
+    ON skripsi.id_mhs = mahasiswa.id_mhs INNER JOIN kota_kab 
+    ON mahasiswa.kode_kota_kab = kota_kab.kode_kota_kab INNER JOIN provinsi
+    ON kota_kab.kode_prov = provinsi.kode_prov WHERE email = '$id_email'")[0];
+
 if (isset($_POST["submit"])) {
 
     //ubah data
@@ -37,8 +39,30 @@ if (isset($_POST["submit"])) {
     <title>Siap Undip</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#provinsi').on('change', function() {
+                var id_prov = $(this).val();
+                //alert(id_prov);
+                $.ajax({
+                    url: 'ajaxData.php',
+                    type: "POST",
+                    data: {
+                        provinsiID: id_prov
+                    },
+                    success: function(data) {
+                        $('#kabupaten').html(data);
+                    },
+                    error: function() {
+                        alert('gagal mengambil data');
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 
 <body style="background-color:#f3f3f3"">
@@ -97,7 +121,7 @@ if (isset($_POST["submit"])) {
                         <div class="mb-3 row">
                             <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap :</label>
                             <div class="col-sm-8">
-                                <input type="text"name="nama" class="form-control" id="nama" value="<?= $mhs["nama"]; ?>">
+                                <input type="text" name="nama" class="form-control" id="nama" value="<?= $mhs["nama"]; ?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -109,28 +133,26 @@ if (isset($_POST["submit"])) {
 
 
                         <div class="mb-3 row">
-                            <label for="Provinsi" class="col-sm-4 col-form-label"></label>
+                            <label for="provinsi" class="col-sm-4 col-form-label"></label>
                             <div class="col-sm-8 ">
-                                <select class="form-control" id="Provinsi" name="Provinsi">
-                                    <option value="0">Provinsi</option>
+                                <select class="form-control" id="provinsi" name="provinsi">
+                                    
+                                    <?php
+                                    $query = mysqli_query($db, "SELECT * FROM provinsi");
+                                    
+                                    while ($data = mysqli_fetch_array($query)) {
+                                    ?>                                                                                                          
+                                        <option value="<?php echo $data['kode_prov'] ?>" ><?php echo $data['nama_prov'] ?></option>                                                                                                                                                                                                         
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="Kota/Kabupaten" class="col-sm-4 col-form-label"></label>
+                            <label for="kabupaten" class="col-sm-4 col-form-label"></label>
                             <div class="col-sm-8 ">
-                                <select class="form-control" id="Kota/Kabupaten" name="Kota/Kabupaten">
-                                    <option value="0">Kota/Kabupaten</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="Kelurahan" class="col-sm-4 col-form-label"></label>
-                            <div class="col-sm-8 ">
-                                <select class="form-control" id="Kelurahan" name="Kelurahan">
-                                    <option value="0">Kelurahan</option>
+                                <select class="form-control" id="kabupaten" name="kabupaten">
+                                    <option value="<?php echo $mhs['nama_kota_kab'] ?>"><?php echo $mhs['nama_kota_kab'] ?></option>
                                 </select>
                             </div>
                         </div>
@@ -140,16 +162,27 @@ if (isset($_POST["submit"])) {
                     <div class="mb-3 row mt-4">
                         <label for="angkatan" class="col-sm-4 col-form-label">Angkatan :</label>
                         <div class="col-sm-8">
-                            <input type="text" name="angkatan"class="form-control" id="angkatan" value="<?= $mhs["angkatan"]; ?>">
+                            <input type="text" name="angkatan" class="form-control" id="angkatan" value="<?= $mhs["angkatan"]; ?>">
                         </div>
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="Status" class="col-sm-4 col-form-label">Status :</label>
+                        <label for="status" class="col-sm-4 col-form-label">Status :</label>
                         <div class="col-sm-8 ">
-                            <select class="form-control" id="Status" name="Status">
-                                <option value="0"></option>
+                            <select class="form-control" id="status" name="status">
+                                <?php
+                                if ($mhs["status"] == 'AKTIF') {
+                                ?>
+                                    <option value="AKTIF">AKTIF</option>
+                                    <option value="TIDAK AKTIF">TIDAK AKTIF</option>
+                                <?php } else {
+
+                                ?>
+                                    <option value="TIDAK AKTIF">TIDAK AKTIF</option>
+                                    <option value="AKTIF">AKTIF</option>
+                                <?php } ?>
                             </select>
+
                         </div>
                     </div>
 
@@ -158,22 +191,43 @@ if (isset($_POST["submit"])) {
                     <div class="mb-3 row">
                         <label for="no_HP" class="col-sm-4 col-form-label">No Handphone :</label>
                         <div class="col-sm-8">
-                            <input type="text" name="no_HP"class="form-control" id="no_HP" value="<?= $mhs["no_HP"]; ?>">
+                            <input type="text" name="no_HP" class="form-control" id="no_HP" value="<?= $mhs["no_HP"]; ?>">
                         </div>
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="Jalur Masuk" class="col-sm-4 col-form-label">Jalur Masuk :</label>
+                        <label for="jalur_masuk" class="col-sm-4 col-form-label">Jalur Masuk :</label>
                         <div class="col-sm-8 ">
-                            <select class="form-control" id="Jalur Masuk" name="Jalur Masuk">
-                                <option value="0"></option>
+                            <select class="form-control" id="jalur_masuk" name="jalur_masuk">
+
+                                <?php
+                                if ($mhs["jalur_masuk"] == 'SBMPTN') {
+                                ?>
+                                    <option value="SBMPTN">SBMPTN</option>
+                                    <option value="SNMPTN">SNMPTN</option>
+                                    <option value="MANDIRI">MANDIRI</option>
+                                <?php } elseif ($mhs["jalur_masuk"] == 'SNMPTN') {
+
+                                ?>
+                                    <option value="SNMPTN">SNMPTN</option>
+                                    <option value="SBMPTN">SBMPTN</option>
+                                    <option value="MANDIRI">MANDIRI</option>
+                                <?php } else {
+                                ?>
+                                    <option value="MANDIRI">MANDIRI</option>
+                                    <option value="SBMPTN">SBMPTN</option>
+                                    <option value="SNMPTN">SNMPTN</option>
+                                <?php } ?>
+
+
+
                             </select>
                         </div>
                     </div>
                     <br><br><br><br><br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center" name="submit">Perbarui</button>
-                    </form>
+                        </form>
                         <a href="dashboard_mhs.php" class="btn btn-dark  ps-5 pe-5 pb-1 pt-1 text-center">Next</a>
                     </div>
 
@@ -190,5 +244,6 @@ if (isset($_POST["submit"])) {
 
 
 </body>
+
 
 </html>
