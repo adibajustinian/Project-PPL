@@ -5,10 +5,19 @@
         $nama = $_POST["nama"];
         $email = $_POST["email"];
         $NIM = $_POST["NIM"];
+        $NIP = $_POST["NIP"];
+        $peran = $_POST["peran"];
         
-        $query = "INSERT INTO mahasiswa (id_mhs,NIM,fakultas,nama,email,password,alamat,no_HP,angkatan,status,jalur_masuk,foto,kode_kota_kab,nama_doswal,persetujuan)Values('','$NIM','','$nama','$email','$password','','','','','','','','','');";
-        $query .= "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','','$email','$nama','$NIM','');";
-        $query .= "INSERT INTO irs (id_irs,smst_aktif,jumlah_sks,berkas_irs,status_irs,id_mhs) Values ('','','','','','')";
+        
+        
+        if($peran == "dosen" ||$peran == "operator" ||$peran =="department"){
+            $query = "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','$peran','$email','$nama','$NIM','$NIP')";
+        }else{
+            $query = "INSERT INTO mahasiswa (id_mhs,NIM,fakultas,nama,email,password,alamat,no_HP,angkatan,status,jalur_masuk,foto,kode_kota_kab,nama_doswal,persetujuan)Values('','$NIM','','$nama','$email','$password','','','','','','','','','');";
+            $query .= "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','$peran','$email','$nama','$NIM','$NIP')";
+        }
+
+        
         
             
         mysqli_multi_query($db,$query);
@@ -73,19 +82,35 @@
             </section>
             <br><br>
 
-            <div class="row justify-content-center">
-                <div class="col-md-auto">
+            <div class="row justify-content-center mb-3" >
+                <div class="col-md-auto" style="margin-bottom: 10px;">
                     <form action="" method="POST" >
                         <table style="width:auto">
                             <tr">
-                                <td style="width: 150px; ;">
-                                    <b>NIM</b>
+                                <td style="width: 175px; ;">
+                                    <b>Peran</b>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control mb-2" id="NIM" name="NIM">
+                                    <input type="text" class="form-control mb-2" id="peran" name="peran">
                                 </td>
                                 </tr>
                                 <br>
+                                <tr>
+                                    <td>
+                                        <b>NIM</b>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control mb-2 " id="NIM" name="NIM">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>NIP</b>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control mb-2 " id="NIP" name="NIP">
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <b>Nama</b>
@@ -113,8 +138,8 @@
                                 </tr>
                         </table>
 
-                        <br><br><br>
-                        <div class="col-md-12 text-center">
+                        <br>
+                        <div class="col-md-12 text-center mb-3">
                             <button  type="submit" name="submit" class="btn btn-primary  ps-5 pe-5 pb-2 pt-2 text-center" style="background-color: #101E31;">Register</button>
                         </div>
                         <br><br>
