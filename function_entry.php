@@ -165,7 +165,7 @@ function getUpdateProfile($data){
     $jalur_masuk = $data["jalur_masuk"];
     $angkatan =$data["angkatan"];
 
-    //
+    
     $id_mhs =$data["id_mhs"];
     $no_HP =$data["no_HP"];
 
