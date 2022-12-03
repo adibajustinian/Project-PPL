@@ -36,52 +36,53 @@ if (isset($_POST["submit"])){
       $error_login = "The email or password is incorrect";
       $valid = false;
     }
+     // menyeleksi data user dengan email dan password yang sesuai
+     $login = mysqli_query($db,"SELECT * FROM user where email='$email' AND password ='$password'");
+     // menghitung jumlah data yang ditemukan
+     $cek = mysqli_num_rows($login);
+     
+     // cek apakah email dan password di temukan pada database
+     if($cek > 0){
+         
+         $data = mysqli_fetch_array($login);
+     
+         // cek jika user login sebagai admin
+         if($data['peran']=="mahasiswa"){
+             // buat session login dan email
+             $_SESSION['email'] = $data['email'];
+             $_SESSION['peran'] = "mahasiswa";
+             // alihkan ke halaman dashboard admin
+             header("location:dashboard_mhs.php");
+     
+         // cek jika user login sebagai pegawai
+         }else if($data['peran']=="dosen"){
+             // buat session login dan email
+             $_SESSION['email'] = $data['email'];
+             $_SESSION['peran'] = "dosen";
+             // alihkan ke halaman dashboard pegawai
+             header("location:dashboard_doswal.php");
+     
+         // cek jika user login sebagai pengurus
+         }else if($data['peran']=="operator"){
+             // buat session login dan email
+             $_SESSION['email'] = $data['email'];
+             $_SESSION['peran'] = "operator";
+             // alihkan ke halaman dashboard pengurus
+             header("location:dashboard_operator.php");
+         }
+         else if($data['peran']=="departemen"){
+             // buat session login dan email
+             $_SESSION['email'] = $data['email'];
+             $_SESSION['peran'] = "departemen";
+             // alihkan ke halaman dashboard pengurus
+             header("location:dashboard_departemen.php");
+         }
+     }
 
 }
 
     
-    // menyeleksi data user dengan email dan password yang sesuai
-    $login = mysqli_query($db,"SELECT * FROM user where email='$email' AND password ='$password'");
-    // menghitung jumlah data yang ditemukan
-    $cek = mysqli_num_rows($login);
-    
-    // cek apakah email dan password di temukan pada database
-    if($cek > 0){
-        
-        $data = mysqli_fetch_array($login);
-    
-        // cek jika user login sebagai admin
-        if($data['peran']=="mahasiswa"){
-            // buat session login dan email
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['peran'] = "mahasiswa";
-            // alihkan ke halaman dashboard admin
-            header("location:dashboard_mhs.php");
-    
-        // cek jika user login sebagai pegawai
-        }else if($data['peran']=="dosen"){
-            // buat session login dan email
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['peran'] = "dosen";
-            // alihkan ke halaman dashboard pegawai
-            header("location:dashboard_doswal.php");
-    
-        // cek jika user login sebagai pengurus
-        }else if($data['peran']=="operator"){
-            // buat session login dan email
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['peran'] = "operator";
-            // alihkan ke halaman dashboard pengurus
-            header("location:dashboard_operator.php");
-        }
-        else if($data['peran']=="departemen"){
-            // buat session login dan email
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['peran'] = "departemen";
-            // alihkan ke halaman dashboard pengurus
-            header("location:dashboard_departemen.php");
-        }
-    }
+   
 
 ?>
 
@@ -99,20 +100,9 @@ if (isset($_POST["submit"])){
 </head>
 
 <body style="background-color:#101E31">
-    <!-- Navbar
-    <nav class="p-3"  style="background-color:#101E31" style="padding: 10px;" style="box-shadow: 10px 10px rgb(69, 67, 67);">
-      
-          <div class="row text-center text-light" >
-            <div class="col">
-              <h2>Sistem Informasi Akademik Departemen Ilmu Komputer / Informatika</h2>
-            </div>
-          </div>
-      
-    </nav> -->
-    <!-- container -->
     <br>
     <div class="container d-flex justify-content-center">
-        <div class="card" style="width: 40rem;" style="box-shadow: 2px 2px rgb(69, 67, 67);">
+        <div class="card mt-4" style="width: 40rem;" style="box-shadow: 2px 2px rgb(69, 67, 67);">
 
             <section class="jumbotron text-center mt-4">
                 <img src="logo.jpeg" alt="Informatika Undip" width="200" class="mt-2">
