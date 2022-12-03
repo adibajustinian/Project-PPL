@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <html lang="en">
 
 <head>
@@ -16,7 +16,7 @@
             width: 200px;
             height: 180px;
             padding: 5px 25px;
-            /* background: ; */
+            
             color: #222;
             border-radius: 50px;
             border-style: groove;
@@ -122,16 +122,32 @@
                         </td>
                     </tr>
                     <?php
+                    
+                    
+                    
+
                     require_once('functions.php');
+                    $dosen = query("SELECT * FROM mahasiswa INNER JOIN dosen ON mahasiswa.nama_doswal = dosen.nama_doswal");
+
+                    $i=1;
+                    foreach($dosen as $dsn) :
+                        if($dsn["email"] == $_SESSION["email"]){
+                            $nama_doswal = $dsn["nama_doswal"];
+                        }
+                        
+                    endforeach;
+
+                    
                     $mahasiswa = query("SELECT mahasiswa.id_mhs,NIM,nama,status_irs,status_khs,status_pkl,status_skripsi,persetujuan,nama_doswal
                         FROM irs INNER JOIN mahasiswa
                         ON irs.id_mhs = mahasiswa.id_mhs INNER JOIN khs
                         ON khs.id_mhs = mahasiswa.id_mhs INNER JOIN pkl
                         ON pkl.id_mhs = mahasiswa.id_mhs INNER JOIN skripsi
-                        ON skripsi.id_mhs = mahasiswa.id_mhs WHERE nama_doswal = 'Dr. Aris Puji Widodo, S.Si, M.T'");
+                        ON skripsi.id_mhs = mahasiswa.id_mhs WHERE nama_doswal = '$nama_doswal'");
+                        
                     if (isset($_POST["cari"])) {
                         $mahasiswa = cari($_POST["keyword"]);
-                    }
+                    }   
                     ?>
                     <?php $i = 1 ?>
                     <?php foreach ($mahasiswa as $mhs) : ?>
