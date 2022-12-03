@@ -33,8 +33,13 @@
     }
 //list aktif departemen
     function klik2($upload){
+        echo '<script type="text/JavaScript">
+        getColorButton();
+        </script>';
         $query1 = "SELECT mahasiswa.id_mhs,NIM,nama FROM mahasiswa WHERE status='AKTIF' AND angkatan LIKE '%$upload%'";
         return query($query1);
+        
+   ;
     }
     function semua2($upload){
         $query1 = "SELECT mahasiswa.id_mhs,NIM,nama FROM mahasiswa WHERE status='AKTIF'";

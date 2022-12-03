@@ -1,13 +1,17 @@
 <?php
     require_once('db_login.php');
     if(isset($_POST["submit"])){
-        $nim = $_POST["NIM"];
+        $password = $_POST["password"];
         $nama = $_POST["nama"];
-        $angkatan = $_POST["angkatan"];
-        $status = $_POST["status"];
+        $email = $_POST["email"];
+        $NIM = $_POST["NIM"];
         
-        $query = "INSERT INTO mahasiswa Values('','$nim','','$nama','','','','$angkatan','$status','','','','','')";
-        mysqli_query($db,$query);
+        $query = "INSERT INTO mahasiswa (id_mhs,NIM,fakultas,nama,email,password,alamat,no_HP,angkatan,status,jalur_masuk,foto,kode_kota_kab,nama_doswal,persetujuan)Values('','$NIM','','$nama','$email','$password','','','','','','','','','');";
+        $query .= "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','','$email','$nama','$NIM','');";
+        $query .= "INSERT INTO irs (id_irs,smst_aktif,jumlah_sks,berkas_irs,status_irs,id_mhs) Values ('','','','','','')";
+        
+            
+        mysqli_multi_query($db,$query);
 
     }
     if(mysqli_affected_rows($db)>0){
@@ -75,7 +79,7 @@
                         <table style="width:auto">
                             <tr">
                                 <td style="width: 150px; ;">
-                                    <b>Nim</b>
+                                    <b>NIM</b>
                                 </td>
                                 <td>
                                     <input type="text" class="form-control mb-2" id="NIM" name="NIM">
@@ -93,18 +97,18 @@
                                 
                                 <tr>
                                     <td>
-                                        <b>Angkatan</b>
+                                        <b>Email</b>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control mb-2" id="angkatan" name="angkatan">
+                                        <input type="text" class="form-control mb-2" id="email" name="email">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Status</b>
+                                        <b>Password</b>
                                     </td>
                                     <td>
-                                    <input type="text" class="form-control mb-2" id="status" name="status">
+                                    <input type="password" class="form-control mb-2" id="password" name="password">
                                     </td>
                                 </tr>
                         </table>
