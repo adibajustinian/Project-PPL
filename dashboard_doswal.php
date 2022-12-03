@@ -60,7 +60,7 @@ $data_lain = array_values($lain);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
-<body style="background-color:#f3f3f3"">
+<body style="background-color:#f3f3f3">
 
     <!-- header-->  
     
