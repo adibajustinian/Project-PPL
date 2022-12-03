@@ -8,5 +8,7 @@ echo '<option>Kabupaten</option> ';
 while ($data = mysqli_fetch_array($query)){
     echo '<option value= " '.$data['kode_kota_kab']. '">'.$data['nama_kota_kab'].' </option> ';
 }
+ 
+
 
 ?>
