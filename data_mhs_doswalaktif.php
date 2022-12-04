@@ -113,22 +113,24 @@ $mahasiswa = (query($query));
                             <div class="table-responsive-lg ms-4 justify-content-center">
                                 <table class="table table-borderless">
                                     <tr>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">1</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">2</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">3</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">4</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">5</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">6</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">7</button></th>
+                                        <th>
+                                            <button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">1</button>
+                                        </th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">2</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">3</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">4</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">5</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">6</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">7</button></th>
                                     </tr>
                                     <tr>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">8</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">9</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">10</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">11</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">12</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">13</button></th>
-                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center" name="upload" value="upload" style="background-color:#101E31;width: 100%;">14</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">8</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">9</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">10</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">11</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">12</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">13</button></th>
+                                        <th><button type="submit" class="btn btn-dark  pe-4 ps-4 pt-2 pb-2 text-center"  style="background-color:#101E31;width: 100%;">14</button></th>
                                     </tr>
 
                                 </table>
@@ -157,7 +159,12 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card mb-4 " style="width:16rem; height:14rem;background-color:#0E3B81;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">IRS</h5>
+                                            <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">IRS</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
+                                            
+                                            
                                             <br>
                                             <div class="card-body text-center d-flex justify-content-center align-items-center">
                                                 <div class="card-title text-center display-6 mb-4"><?= $mhs["SKS_semester"] ?> SKS</div>
@@ -168,7 +175,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#972126;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">KHS</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">KHS</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>SKS Semester : <?= $mhs["SKS_semester"] ?></div>
@@ -184,7 +194,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#C98400;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">PKL</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">PKL</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>Status PKL : <?= $mhs["status_pkl"] ?></div>
@@ -196,7 +209,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#2F6146;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">Skripsi</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">Skripsi</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>Status Skripsi : <?= $mhs["status_skripsi"] ?></div>

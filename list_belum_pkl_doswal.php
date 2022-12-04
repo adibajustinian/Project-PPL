@@ -102,7 +102,7 @@
                         $i = 1;
                         foreach ($query as $mhs) : ?>
                         <tr>
-                            <td> <?= $mhs["id_mhs"] ?></td>
+                            <td> <?= $i ?></td>
                             <td><?= $mhs["NIM"] ?></td>
                             <td><?= $mhs["nama"] ?></td>
                             <td><a class="btn btn-warning btn-sm" href="data_mhs_doswalblmpkl.php?id=<?= $mhs["id_mhs"]; ?>">Detail</a>

@@ -120,7 +120,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card mb-4 " style="width:16rem; height:14rem;background-color:#0E3B81;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">IRS</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">IRS</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-body text-center d-flex justify-content-center align-items-center">
                                                 <div class="card-title text-center display-6 mb-4"><?= $mhs["SKS_semester"] ?> SKS</div>
@@ -131,7 +134,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#972126;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">KHS</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">KHS</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>SKS Semester : <?= $mhs["SKS_semester"] ?></div>
@@ -147,7 +153,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#C98400;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">PKL</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">PKL</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>Status PKL : <?= $mhs["status_pkl"] ?></div>
@@ -159,7 +168,10 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:16rem; height:14rem;background-color:#2F6146;">
                                         <div class="card-body text-light">
-                                            <h5 class="card-title text-light">Skripsi</h5>
+                                        <div class="row">
+                                                <div class="col-6"><h5 class="card-title text-light">Skripsi</h5></div>
+                                                <div class="col-6"><h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5></div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>Status Skripsi : <?= $mhs["status_skripsi"] ?></div>

@@ -31,7 +31,7 @@ $mahasiswa = (query($query));
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
@@ -138,11 +138,19 @@ $mahasiswa = (query($query));
                             <div class="row">
                                 <div class="col-6">
                                     <div class="card mb-4 " style="width:15rem; height:14rem;background-color:#0E3B81;">
-                                        <h5 class="card-title text-center mt-3">IRS</h5>
-                                        <div class="card-body text-center d-flex justify-content-center align-items-center">
-                                            <div class="card-title text-center display-6 mb-4"><?= $mhs["SKS_semester"] ?> SKS</div>
-
-
+                                        <div class="card-body text-light">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light">IRS</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="card-body text-center d-flex justify-content-center align-items-center">
+                                                <div class="card-title text-center display-6 mb-4"><?= $mhs["SKS_semester"] ?> SKS</div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -150,7 +158,14 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:15rem; height:14rem;background-color:#972126;">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">KHS</h5>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light">KHS</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5>
+                                                </div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>SKS Semester : <?= $mhs["SKS_semester"] ?></div>
@@ -166,7 +181,14 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:15rem; height:14rem;background-color:#C98400;">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">PKL</h5>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light">PKL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5>
+                                                </div>
+                                            </div>
                                             <br><br>
                                             <div class="card-text">
                                                 <div>Status PKL : <?= $mhs["status_pkl"] ?></div>
@@ -178,7 +200,14 @@ $mahasiswa = (query($query));
                                 <div class="col-6">
                                     <div class="card" style="width:15rem; height:14rem;background-color:#2F6146;">
                                         <div class="card-body">
-                                            <h5 class="card-title text-center">Skripsi</h5>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light">Skripsi</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h5 class="card-title text-light text-center ms-5"><?= $mhs["smst_aktif"] ?></h5>
+                                                </div>
+                                            </div>
                                             <br>
                                             <div class="card-text">
                                                 <div>Status Skripsi : <?= $mhs["status_skripsi"] ?></div>
