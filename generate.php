@@ -8,18 +8,12 @@
         $NIP = $_POST["NIP"];
         $peran = $_POST["peran"];
         
-        
-        
         if($peran == "dosen" ||$peran == "operator" ||$peran =="department"){
-            $query = "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','$peran','$email','$nama','$NIM','$NIP')";
+            $query = "INSERT INTO user (password,peran,email,NIM,NIP) Values('$password','$peran','$email','$NIM','$NIP')";
         }else{
-            $query = "INSERT INTO mahasiswa (id_mhs,NIM,fakultas,nama,email,password,alamat,no_HP,angkatan,status,jalur_masuk,foto,kode_kota_kab,nama_doswal,persetujuan)Values('','$NIM','','$nama','$email','$password','','','','','','','','','');";
-            $query .= "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','$peran','$email','$nama','$NIM','$NIP')";
+            $query = "INSERT INTO mahasiswa (id_mhs,NIM,fakultas,nama,email,alamat,no_HP,angkatan,status,jalur_masuk,foto,kode_kota_kab,nama_doswal,persetujuan)Values('','$NIM','','$nama','$email','','','','','','','','','');";
+            $query .= "INSERT INTO user (password,peran,email,nama,NIM,NIP) Values('$password','$peran','$email','$NIM','$NIP')";
         }
-
-        
-        
-            
         mysqli_multi_query($db,$query);
 
     }
@@ -87,7 +81,7 @@
                     <form action="" method="POST" >
                         <table style="width:auto">
                             <tr">
-                                <td style="width: 175px; ;">
+                                <td style="width: 150px; ;">
                                     <b>Peran</b>
                                 </td>
                                 <td>
@@ -122,15 +116,15 @@
                                 
                                 <tr>
                                     <td>
-                                        <b>Email</b>
+                                        <b>email</b>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control mb-2" id="email" name="email">
+                                        <input type="email" class="form-control mb-2" id="email" name="email">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Password</b>
+                                        <b>password</b>
                                     </td>
                                     <td>
                                     <input type="password" class="form-control mb-2" id="password" name="password">
