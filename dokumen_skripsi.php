@@ -28,7 +28,7 @@
         <?php if($id == $mhs["id_mhs"]){?>
         <?php header("content-type: application/pdf"); ?>
         <?php $dokumenSkripsi = $mhs["berkas_skripsi"]; ?>
-        <?php readfile("file_upload/skripsi/$dokumenskripsi");?>
+        <?php readfile("file_upload/skripsi/$dokumenSkripsi");?>
         
         
         <?php } ?>

@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once('functions.php');
+?>
 <html lang="en">
 
 <head>
@@ -10,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="js/jquery.min.js"></script>
     <style>
         .box-container {
             font-size: 12px;
@@ -32,32 +36,33 @@
     </style>
 </head>
 
-<body style="background-color:#f3f3f3"">
 
-    <!-- header-->  
-    
-            <nav class=" navbar navbar-expand-lg navbar-light text-light" style="background-color:#101E31">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-        </svg>
-    </a>
-    <ul class="dropdown-menu text-light" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-    </ul>
-    <div class="container">
+<body style="background-color:#f3f3f3">
 
-        <div class="container justify-content-center text-center text-light">
-            <h4>SISTEM MONITORING MAHASISWA INFORMATIKA UNIVERSITAS DIPONEGORO</h4>
+    <!-- header-->
+
+    <nav class=" navbar navbar-expand-lg navbar-light text-light" style="background-color:#101E31">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </a>
+        <ul class="dropdown-menu text-light" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+        </ul>
+        <div class="container">
+
+            <div class="container justify-content-center text-center text-light">
+                <h4>SISTEM MONITORING MAHASISWA INFORMATIKA UNIVERSITAS DIPONEGORO</h4>
+            </div>
+
         </div>
-
-    </div>
-    <div class="me-4 align-items-center flex justify-center text-light" style="text-align:center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-        </svg>
-        <h6>Dosen Wali</h6>
-    </div>
+        <div class="me-4 align-items-center flex justify-center text-light" style="text-align:center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            </svg>
+            <h6>Dosen Wali</h6>
+        </div>
     </nav>
 
     <!--form-->
@@ -145,6 +150,7 @@
                         if (isset($_POST["cari"])) {
                             $mahasiswa = cari($_POST["keyword"]);
                         }
+
                         ?>
                         <?php $i = 1 ?>
                         <?php foreach ($mahasiswa as $mhs) : ?>
@@ -182,9 +188,12 @@
                                         <?= $mhs["status_skripsi"];  ?>
                                     <?php } ?>
                                 </td>
-                                <td><?= $mhs["persetujuan"] ?></td>
+                                <td id="persetujuan">
+                                    <?= $mhs["persetujuan"]; ?>
+                                </td>
                                 <td>
                                     <a class="btn btn-warning btn-sm" href="data_mhs.php?id=<?= $mhs["id_mhs"]; ?>">Detail</a>
+                                    <button onclick="getPersetujuan()" class="btn btn-success btn-sm" type="persetujuan" name="action">Disetujui</button>
                                 </td>
                             </tr>
                             <?php $i++; ?>
