@@ -122,9 +122,6 @@
                         </td>
                     </tr>
                     <?php
-                    
-                    
-                    
 
                     require_once('functions.php');
                     $dosen = query("SELECT * FROM mahasiswa INNER JOIN dosen ON mahasiswa.nama_doswal = dosen.nama_doswal");
