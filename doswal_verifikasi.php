@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <html lang="en">
 
 <head>
@@ -16,7 +16,7 @@
             width: 200px;
             height: 180px;
             padding: 5px 25px;
-            
+
             color: #222;
             border-radius: 50px;
             border-style: groove;
@@ -81,94 +81,118 @@
                 </div>
                 <div class="col-6">
                     <div class="me-9 ms-1">
-                    <form action="" method="POST">
-                        <input name="keyword" type="text" placeholder="Masukkan nama dan NIM" size="40">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="cari">Search</button>
-                    </form>
+                        <form action="" method="POST">
+                            <input name="keyword" type="text" placeholder="Masukkan nama dan NIM" size="40">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="cari">Search</button>
+                        </form>
                     </div>
                 </div>
 
             </div>
             <div class="row_justify">
-            <form method="POST" autocomplete="on" action="" class="justify-content-center">
-                <table style="height: 50px;">
-                    <tr style="text-align: center;">
-                        <td style="width: 50px;">
-                            <b>No</b>
-                        </td>
-                        <td style="width: 150px;">
-                            <b>NIM</b>
-                        </td>
-                        <td style="width: 300px;">
-                            <b>Nama</b>
-                        </td>
-                        <td style="width: 100px;">
-                            <b>IRS</b>
-                        </td>
-                        <td style="width: 100px;">
-                            <b>KHS</b>
-                        </td>
-                        <td style="width: 200px;">
-                            <b>PKL</b>
-                        </td>
-                        <td style="width: 200px;">
-                            <b>Skripsi</b>
-                        </td>
-                        <td style="width: 200px;">
-                            <b>Persetujuan</b>
-                        </td>
-                        <td style="width: 200px;">
-                            <b>Action</b>
-                        </td>
-                    </tr>
-                    <?php
+                <form method="POST" autocomplete="on" action="" class="justify-content-center">
+                    <table style="height: 50px;">
+                        <tr style="text-align: center;">
+                            <td style="width: 50px;">
+                                <b>No</b>
+                            </td>
+                            <td style="width: 150px;">
+                                <b>NIM</b>
+                            </td>
+                            <td style="width: 300px;">
+                                <b>Nama</b>
+                            </td>
+                            <td style="width: 100px;">
+                                <b>IRS</b>
+                            </td>
+                            <td style="width: 100px;">
+                                <b>KHS</b>
+                            </td>
+                            <td style="width: 200px;">
+                                <b>PKL</b>
+                            </td>
+                            <td style="width: 200px;">
+                                <b>Skripsi</b>
+                            </td>
+                            <td style="width: 200px;">
+                                <b>Persetujuan</b>
+                            </td>
+                            <td style="width: 200px;">
+                                <b>Action</b>
+                            </td>
+                        </tr>
+                        <?php
 
-                    require_once('functions.php');
-                    $dosen = query("SELECT * FROM mahasiswa INNER JOIN dosen ON mahasiswa.nama_doswal = dosen.nama_doswal");
+                        require_once('functions.php');
+                        $dosen = query("SELECT * FROM mahasiswa INNER JOIN dosen ON mahasiswa.nama_doswal = dosen.nama_doswal");
 
-                    $i=1;
-                    foreach($dosen as $dsn) :
-                        if($dsn["email"] == $_SESSION["email"]){
-                            $nama_doswal = $dsn["nama_doswal"];
-                        }
-                        
-                    endforeach;
+                        $i = 1;
+                        foreach ($dosen as $dsn) :
+                            if ($dsn["email"] == $_SESSION["email"]) {
+                                $nama_doswal = $dsn["nama_doswal"];
+                            }
 
-                    
-                    $mahasiswa = query("SELECT mahasiswa.id_mhs,NIM,nama,status_irs,status_khs,status_pkl,status_skripsi,persetujuan,nama_doswal
+                        endforeach;
+
+
+                        $mahasiswa = query("SELECT *
                         FROM irs INNER JOIN mahasiswa
                         ON irs.id_mhs = mahasiswa.id_mhs INNER JOIN khs
                         ON khs.id_mhs = mahasiswa.id_mhs INNER JOIN pkl
                         ON pkl.id_mhs = mahasiswa.id_mhs INNER JOIN skripsi
-                        ON skripsi.id_mhs = mahasiswa.id_mhs WHERE nama_doswal = '$nama_doswal'");
-                        
-                    if (isset($_POST["cari"])) {
-                        $mahasiswa = cari($_POST["keyword"]);
-                    }   
-                    ?>
-                    <?php $i = 1 ?>
-                    <?php foreach ($mahasiswa as $mhs) : ?>
+                        ON skripsi.id_mhs = mahasiswa.id_mhs");
 
-                        <tr>
-                            <td><?= $i?></td>
+                        if (isset($_POST["cari"])) {
+                            $mahasiswa = cari($_POST["keyword"]);
+                        }
+                        ?>
+                        <?php $i = 1 ?>
+                        <?php foreach ($mahasiswa as $mhs) : ?>
 
-                            <td><?= $mhs["NIM"] ?></td>
-                            <td><?= $mhs["nama"] ?></td>
-                            <td><?= $mhs["status_irs"] ?></td>
-                            <td><?= $mhs["status_khs"] ?></td>
-                            <td><?= $mhs["status_pkl"] ?></td>
-                            <td><?= $mhs["status_skripsi"] ?></td>
-                            <td><?= $mhs["persetujuan"] ?></td>
-                            <td>
-                                <a class="btn btn-warning btn-sm" href="data_mhs.php?id=<?= $mhs["id_mhs"]; ?>">Detail</a>
-                            </td>
-                        </tr>
-                        <?php $i++; ?>
-                    <?php endforeach; ?>
-                </table>
-            
-            </form>
-                
+                            <tr>
+                                <td><?= $i ?></td>
+
+                                <td><?= $mhs["NIM"] ?></td>
+                                <td><?= $mhs["nama"] ?></td>
+                                <td>
+                                    <?php if ($mhs["status_irs"] == "Terisi") { ?>
+                                        <a class="btn btn-warning btn-sm" href="dokumen_irs.php?id=<?= $mhs["id_mhs"]; ?>">Lihat</a>
+                                    <?php } else { ?>
+                                        <?= $mhs["status_irs"];  ?>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <?php if ($mhs["status_khs"] == "Terisi") { ?>
+                                        <a class="btn btn-warning btn-sm" href="dokumen_khs.php?id=<?= $mhs["id_mhs"]; ?>">Lihat</a>
+                                    <?php } else { ?>
+                                        <?= $mhs["status_khs"];  ?>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <?php if ($mhs["status_pkl"] == "Sudah PKL") { ?>
+                                        <a class="btn btn-warning btn-sm" href="dokumen_pkl.php?id=<?= $mhs["id_mhs"]; ?>">Lihat</a>
+                                    <?php } else { ?>
+                                        <?= $mhs["status_pkl"];  ?>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <?php if ($mhs["status_skripsi"] == "Sudah Skripsi") { ?>
+                                        <a class="btn btn-warning btn-sm" href="dokumen_skripsi.php?id=<?= $mhs["id_mhs"]; ?>">Lihat</a>
+                                    <?php } else { ?>
+                                        <?= $mhs["status_skripsi"];  ?>
+                                    <?php } ?>
+                                </td>
+                                <td><?= $mhs["persetujuan"] ?></td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" href="data_mhs.php?id=<?= $mhs["id_mhs"]; ?>">Detail</a>
+                                </td>
+                            </tr>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                    </table>
+
+                </form>
+
                 <br><br><br>
             </div>
 
